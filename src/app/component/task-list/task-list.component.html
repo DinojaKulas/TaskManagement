@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+
+      <div class="d-flex mb-3">
+        <div class="p-2">
+          <input type="search" class="form-control" id="search"[(ngModel)]="searchText" placeholder="search Task">
+        </div>
+        <div class="ms-auto p-2">
+          <button type="button" class="btn btn-primary" [routerLink]="['add']">New Task</button>
+        </div>
+      </div>
+
+      <table class="table table borderd">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">DueDate</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of task | filter:searchText">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td>{{item.dueDate}}</td>
+            <td>{{item.priority}}</td>
+            <td><button type="button" class="btn btn-success" (click)="onEdit(item.id)">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </td>
+            <td><button type="button" class="btn btn-danger" (click)="onDelete(item.id)">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
