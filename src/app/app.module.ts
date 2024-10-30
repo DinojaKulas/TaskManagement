@@ -10,6 +10,8 @@ import { FilterPipe } from './Pipes/filter.pipe';
 import { TaskEditComponent } from './component/task-edit/task-edit.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { UserAddComponent } from './user-add/user-add.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CommonModule } from '@angular/common';
     TaskAddComponent,
     FilterPipe,
     TaskEditComponent,
+    UserAddComponent,
+    UserListComponent,
     
   ],
   imports: [
