@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,10 +25,16 @@ export class UserAddComponent implements OnInit {
     this.userId = Number(uid);
 
     this.userform = this.fb.group({
+      
       name: ['', [Validators.required]],
       email: [''],
       password: [''],
       phone: ['', [Validators.required]],
+      address: this.fb.group({
+        addressLine1: ['', [Validators.required]],
+        addressLine2: [''],
+        city: ['']
+      })
     })
 
     if (uid) {
@@ -42,13 +48,7 @@ export class UserAddComponent implements OnInit {
     if (this.isEditMode == true) {
       this.userservice.getUser(this.userId).subscribe(data => {
 
-        this.userform.patchValue({
-          id: data.id,
-          name: data.name,
-          email: data.email,
-          password: data.password,
-          phone: data.phone,
-        })
+        this.userform.patchValue(data)
       }, error => {
         this.toastr.error("User is not found");
       });
@@ -62,20 +62,19 @@ export class UserAddComponent implements OnInit {
       user.id = this.userId;
       this.userservice.updateUser(user).subscribe(data => {
         this.toastr.success("User is updated successfully");
-        this.router.navigate(["/users"]);
+        this.router.navigate(["/user-edit"]);
       });
     } else {
       this.userservice.createUser(user).subscribe(data => {
         this.toastr.success("User is created successfully");
-        this.router.navigate(["/users"]);
+        this.router.navigate(["/user-add"]);
       });
     }
-
-
   }
 
   cancel() {
     this.userform.reset();
+    this.router.navigate(["/user"])
   }
 
 }

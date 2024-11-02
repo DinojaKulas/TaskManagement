@@ -14,7 +14,7 @@ export class UserServiceService {
     return this.http.get<User[]>(this.url);
   }
 
-  createUser(user: User) {
+  createUser(user: any) {
     return this.http.post(this.url, user);
   }
 
@@ -31,10 +31,16 @@ export class UserServiceService {
   }
 }
 export interface User {
+address: any;
   id: number;
   name: string;
   email: string;
   password: string;
   phone: string;
+}
+export interface Address{
+  addressLine1:string;
+  addressLine2:string;
+  city:string;
 }
 
