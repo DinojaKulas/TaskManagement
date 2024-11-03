@@ -26,6 +26,7 @@ export class TaskService {
   }
 }
 export interface Task {
+assigneeId: any;
   id: number;
   title: string;
   description: string;

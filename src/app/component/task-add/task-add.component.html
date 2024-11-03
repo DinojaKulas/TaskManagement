@@ -1,29 +1,60 @@
 <div class="container">
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
-        <h3>Add New Task</h3>
+        <div class="row">
+            <div class="col-6">
+                <h3>Add New Task</h3>
 
-        <form [formGroup]="taskform" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" formControlName="title">                
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" formControlName="description" >
-            </div>
-            <div class="mb-3">
-                <label for="duedate" class="form-label">DueDate</label>
-                <input type="date" class="form-control" id="duedate" formControlName="dueDate">
-            </div>
-            <div class="mb-3">
-                <label for="priority" class="form-label">Priority</label>
-                <input type="text" class="form-control" id="priority" formControlName="priority">
+                <form [formGroup]="taskform" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" formControlName="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="duedate" class="form-label">DueDate</label>
+                        <input type="date" class="form-control" id="duedate" formControlName="dueDate">
+                    </div>
+                    <div class="mb-3">
+                        <label for="priority" class="form-label">Priority</label>
+                        <select class="form-control" id="priority" formControlName="priority">
+                            <option value="" class="text-muted" disabled>
+                                <p class="secondary">Select One</p>
+                            </option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="assignee" class="form-label">Assignee</label>
+                        <select class="form-control" id="assignee" formControlName="assignee">
+                            <option *ngFor="let user of user" [value]="user.id">{{user.name}}</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="cencel" class="btn btn-secondary ms-2">Cancel</button>
+                </form>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="cencel" class="btn btn-secondary">Cancel</button>
-
-        </form>
+            <div class="col-6">
+                <h3>Enter The Check List</h3>
+                <hr>
+                <div formArrayName="checkLists">
+                    <div class="row" *ngFor="let checkLists of mycheckLists.controls; let i = index">
+                        <div class="col">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="name" formControlName="i">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-danger" (click)="removeCheckList(i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-success" (click)="addcheckList()">Add</button>
+            </div>
+        </div>
     </div>
-
-</div>
