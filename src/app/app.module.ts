@@ -12,6 +12,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { UserAddComponent } from './user-add/user-add.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { BlanklayoutComponent } from './component/layout/blanklayout/blanklayout.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { UserListComponent } from './user-list/user-list.component';
     TaskEditComponent,
     UserAddComponent,
     UserListComponent,
+    LoginComponent,
+    RegisterComponent,
+    BlanklayoutComponent,
     
   ],
   imports: [
